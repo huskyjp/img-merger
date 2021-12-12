@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "merger"
+name = "img-merger"
 version = "0.1.0"
