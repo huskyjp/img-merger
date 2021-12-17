@@ -96,6 +96,16 @@ fn alternate_pixels(vec1: Vec<u8>, vec2: Vec<u8>) -> Vec<u8> {
     }
 }
 
-// fn set_rgba(vec: Vec<u8>, start: usize, end: usize) -> Vec<u8> {
+fn set_rgba(vec: Vec<u8>, start: usize, end: usize) -> Vec<u8> {
+    let mut rgba = Vec::new();
+    for i in start..=end {
+        let val: u8 = match vec.get(i) {
+            Some(d) => *d,
+            None => panic!("Index out of range")
+        };
+        rgba.push(val);
+    }
 
-// }
+    return rgba
+
+}
