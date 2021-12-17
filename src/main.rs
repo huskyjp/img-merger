@@ -75,3 +75,27 @@ fn make_size_standarised(first_image: DynamicImage, second_image: DynamicImage) 
         return (first_image, second_image.resize_exact(width, height, Triangle))
     }
 }
+
+fn merge_images(first_image: DynamicImage, second_image: DynamicImage) -> Vec<u8> {
+    let first_image_vec = first_image.to_rgba8().into_vec();
+    let second_image_vec = second_image.to_rgba8().into_vec();
+    
+   return alternate_pixels(first_image_vec, second_image_vec)
+}
+
+fn alternate_pixels(vec1: Vec<u8>, vec2: Vec<u8>) -> Vec<u8> {
+    let merged_data = vec![0u8; vec1.len()];
+
+    let mut i = 0;
+    while i < vec1.len() {
+        if i % 8 == 0 {
+            merged_data.splice(i..=i+ 3, set_rgba(vec1));
+        } else {
+            merged_data.splice(i..=i+3, set_rgba(vec2));
+        }
+    }
+}
+
+// fn set_rgba(vec: Vec<u8>, start: usize, end: usize) -> Vec<u8> {
+
+// }
